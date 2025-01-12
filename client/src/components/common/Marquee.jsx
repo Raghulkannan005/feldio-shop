@@ -2,7 +2,7 @@ import { motion } from 'framer-motion';
 
 const Marquee = () => {
 return (
-        <div className="flex overflow-hidden whitespace-nowrap text-white bg-blue-950 p-1">
+        <div className="flex overflow-hidden whitespace-nowrap text-white bg-gradient-to-b from-gray-800 to-gray-900 p-1">
             <motion.div
                 className="flex space-x-32"
                 animate={{

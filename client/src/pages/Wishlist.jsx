@@ -1,12 +1,12 @@
 
 import { motion } from 'framer-motion';
 import { FaTrash } from 'react-icons/fa';
-import { dummyProducts as cartlistItems } from '../constants';
+import { dummyProducts as wishlistItems } from '../constants';
 
-const Cart = () => {
+const Wishlist = () => {
 
   const handleRemove = (id) => {
-   
+    // Logic to remove item from wishlist
   };
 
   return (
@@ -17,9 +17,9 @@ const Cart = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
       >
-        <h2 className="text-2xl font-bold mb-6 text-center">Your Cart</h2>
+        <h2 className="text-2xl font-bold mb-6 text-center">Your Wishlist</h2>
         <div className="space-y-4">
-          {cartlistItems.map(item => (
+          {wishlistItems.map(item => (
             <motion.div 
               key={item.id}
               className="flex items-center space-x-4 p-4 bg-gray-100 rounded-lg shadow"
@@ -46,4 +46,4 @@ const Cart = () => {
   );
 }
 
-export default Cart;
+export default Wishlist;

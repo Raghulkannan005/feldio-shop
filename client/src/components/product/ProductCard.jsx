@@ -1,5 +1,4 @@
 import { Link } from 'react-router-dom';
-import { formatCurrency } from '../../utils/helpers';
 
 const ProductCard = ({ product }) => {
   if (!product) return null;
@@ -7,7 +6,7 @@ const ProductCard = ({ product }) => {
   return (
     <div className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
       <img 
-        src={'https://via.placeholder.com/300'}
+        src={product.image}
         alt={product.name}
         className="w-full h-48 object-cover bg-blue-200"
       />
@@ -18,7 +17,7 @@ const ProductCard = ({ product }) => {
         </p>
         <div className="flex justify-between items-center">
           <span className="text-primary font-bold">
-            {formatCurrency(product.price)}
+            {product.price}
           </span>
           <Link
             to={`/products/${product._id}`}

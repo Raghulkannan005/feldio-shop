@@ -1,66 +1,134 @@
-import { FaShoppingCart, FaHeart, FaSearch, FaHome, FaPhone } from 'react-icons/fa';
-import { motion } from 'framer-motion';
+import { useState, useEffect } from 'react';
+import { FaShoppingCart, FaHeart, FaSearch, FaHome, FaPhone, FaBars, FaTimes } from 'react-icons/fa';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Howl } from 'howler';
-import '../../styles/Header.css';
+import click from "/sounds/click.mp3";
 
-const hoverSound = new Howl({
-  src: ['/sounds/hover.mp3']
-});
-
-const clickSound = new Howl({
-  src: ['/sounds/click.mp3']
-});
+const clickSound = new Howl({ src: click });
 
 const Header = () => {
-  const handleHover = () => {
-    hoverSound.play();
-  };
+  const [isOpen, setIsOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 50);
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const handleClick = () => {
     clickSound.play();
+    setIsOpen(false);
   };
 
   return (
-    <header className="text-blue-800 p-4">
-      <nav className="container mx-auto flex justify-between items-center">
+    <header className={` w-full z-50 transition-all duration-300 ${
+      scrolled ? 'bg-blue-600/90 backdrop-blur-sm shadow-lg' : 'bg-gradient-to-r from-blue-600 to-purple-600'
+    }`}>
+      <nav className="container mx-auto px-4 py-3">
+        <div className="flex items-center justify-between">
+          {/* Logo */}
+          <motion.h1 
+            className="text-2xl font-bold text-white"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1 }}
+          >
+            Feldio Shop
+          </motion.h1>
 
-        <ul className="flex space-x-4">
-          <motion.li whileHover={{ scale: 1.2 }} whileTap={{ scale: 0.9 }}>
-            <a href="/" className="hover:text-gray-400 text-xl icon" onMouseEnter={handleHover} onClick={handleClick}><FaHome /></a>
-          </motion.li>
-          <motion.li whileHover={{ scale: 1.2 }} whileTap={{ scale: 0.9 }}>
-            <a href="/contact" className="hover:text-gray-400 text-lg icon" onMouseEnter={handleHover} onClick={handleClick}><FaPhone /></a>
-          </motion.li>
-          <motion.li whileHover={{ scale: 1.2 }} whileTap={{ scale: 0.9 }}>
-            <a href="/about" className="hover:text-gray-400 icon" onMouseEnter={handleHover} onClick={handleClick}>About</a>
-          </motion.li>
-          <motion.li whileHover={{ scale: 1.2 }} whileTap={{ scale: 0.9 }}>
-            <a href="/login" className="hover:text-gray-400 icon" onMouseEnter={handleHover} onClick={handleClick}>Login</a>
-          </motion.li>
-        </ul>
+          {/* Desktop Navigation */}
+          <div className="hidden lg:flex items-center space-x-8">
+            <NavLinks handleClick={handleClick} />
+          </div>
 
-        <motion.h1 className="text-xl font-bold" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1 }}>
-          Feldio Shop
-        </motion.h1>
+          {/* Mobile Menu Button */}
+          <motion.button
+            whileTap={{ scale: 0.95 }}
+            className="lg:hidden text-white text-2xl"
+            onClick={() => setIsOpen(!isOpen)}
+          >
+            {isOpen ? <FaTimes /> : <FaBars />}
+          </motion.button>
+        </div>
 
-        <ul className="flex space-x-4">
-          <motion.li whileHover={{ scale: 1.2 }} whileTap={{ scale: 0.9 }}>
-            <a href="/" className="hover:text-blue-400 text-xl icon" onMouseEnter={handleHover} onClick={handleClick}><FaShoppingCart /></a>
-          </motion.li>
-          <motion.li whileHover={{ scale: 1.2 }} whileTap={{ scale: 0.9 }}>
-            <a href="/" className="hover:text-blue-400 text-xl icon" onMouseEnter={handleHover} onClick={handleClick}><FaHeart /></a>
-          </motion.li>
-          <motion.li whileHover={{ scale: 1.2 }} whileTap={{ scale: 0.9 }}>
-            <a href="/" className="hover:text-blue-400 text-xl icon" onMouseEnter={handleHover} onClick={handleClick}><FaSearch /></a>
-          </motion.li>
-          <motion.li whileHover={{ scale: 1.2 }} whileTap={{ scale: 0.9 }}>
-            <a href="/" className="hover:text-blue-400 icon" onMouseEnter={handleHover} onClick={handleClick}>Track Order</a>
-          </motion.li>
-        </ul>
-
+        {/* Mobile Navigation */}
+        <AnimatePresence>
+          {isOpen && (
+            <motion.div
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: 'auto' }}
+              exit={{ opacity: 0, height: 0 }}
+              className="lg:hidden"
+            >
+              <div className="py-4 space-y-4">
+                <MobileNavLinks handleClick={handleClick} />
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </nav>
     </header>
   );
 };
+
+const NavLinks = ({ handleClick }) => (
+  <>
+    <motion.a
+      href="/"
+      className="nav-link group relative"
+      whileHover={{ scale: 1.05 }}
+      onClick={handleClick}
+    >
+      <FaHome className="text-xl text-white group-hover:text-yellow-400" />
+      <span className="nav-tooltip">Home</span>
+    </motion.a>
+
+    <div className="flex items-center space-x-6">
+      <NavItem href="/about" text="About" />
+      <NavItem href="/contact" icon={<FaPhone />} text="Contact" />
+      <NavItem href="/cart" icon={<FaShoppingCart />} text="Cart" />
+      <NavItem href="/wishlist" icon={<FaHeart />} text="Wishlist" />
+      <NavItem href="/track" text="Track Order" />
+      <NavItem href="/login" text="Login" className="bg-white/10 px-4 py-2 rounded-full" />
+    </div>
+  </>
+);
+
+const MobileNavLinks = ({ handleClick }) => (
+  <div className="flex flex-col space-y-4 text-white">
+    <MobileNavItem href="/" icon={<FaHome />} text="Home" onClick={handleClick} />
+    <MobileNavItem href="/about" text="About" onClick={handleClick} />
+    <MobileNavItem href="/contact" icon={<FaPhone />} text="Contact" onClick={handleClick} />
+    <MobileNavItem href="/cart" icon={<FaShoppingCart />} text="Cart" onClick={handleClick} />
+    <MobileNavItem href="/wishlist" icon={<FaHeart />} text="Wishlist" onClick={handleClick} />
+    <MobileNavItem href="/track" text="Track Order" onClick={handleClick} />
+    <MobileNavItem href="/login" text="Login" onClick={handleClick} className="bg-white/10 rounded-full" />
+  </div>
+);
+
+const NavItem = ({ href, icon, text, className = '' }) => (
+  <motion.a
+    href={href}
+    className={`nav-link group relative ${className}`}
+    whileHover={{ scale: 1.05 }}
+    whileTap={{ scale: 0.95 }}
+  >
+    {icon && <span className="text-xl text-white group-hover:text-yellow-400">{icon}</span>}
+    {text && <span className="text-white group-hover:text-yellow-400">{text}</span>}
+  </motion.a>
+);
+
+const MobileNavItem = ({ href, icon, text, onClick, className = '' }) => (
+  <motion.a
+    href={href}
+    className={`flex items-center space-x-3 p-2 rounded-lg hover:bg-white/10 ${className}`}
+    whileTap={{ scale: 0.95 }}
+    onClick={onClick}
+  >
+    {icon && <span className="text-xl">{icon}</span>}
+    <span>{text}</span>
+  </motion.a>
+);
 
 export default Header;
