@@ -1,0 +1,8 @@
+.icon {
+    transition: transform 0.3s ease, color 0.3s ease;
+  }
+  
+  .icon:hover {
+    transform: scale(1.2);
+    color: #ff6347; /* Change to a color you like */
+  }
