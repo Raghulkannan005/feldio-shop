@@ -1,33 +1,24 @@
-import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
 
 const ProductCard = ({ product }) => {
   if (!product) return null;
 
   return (
-    <div className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
+    <motion.div 
+      className="bg-white rounded-lg shadow-lg overflow-hidden"
+      whileHover={{ scale: 1.05 }}
+      whileTap={{ scale: 0.95 }}
+    >
       <img 
-        src={product.image}
+        src={product.image} 
         alt={product.name}
-        className="w-full h-48 object-cover bg-blue-200"
+        className="w-full h-64 object-cover"
       />
       <div className="p-4">
-        <h3 className="text-lg font-semibold mb-2">{product.name}</h3>
-        <p className="text-gray-600 text-sm mb-2 line-clamp-2">
-          {product.description}
-        </p>
-        <div className="flex justify-between items-center">
-          <span className="text-primary font-bold">
-            {product.price}
-          </span>
-          <Link
-            to={`/products/${product._id}`}
-            className="bg-primary text-white px-4 py-2 rounded hover:bg-primary/90 transition-colors"
-          >
-            View Details
-          </Link>
-        </div>
+        <h3 className="text-lg font-semibold text-gray-800">{product.name}</h3>
+        <p className="text-red-600 font-bold mt-2">{product.price}</p>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

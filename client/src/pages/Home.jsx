@@ -41,11 +41,11 @@ const Home = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
+    <div className="min-h-screen bg-gradient-to-b from-red-50 to-white">
       {/* Hero Section with Particles Background */}
       <section className="relative h-[90vh] overflow-hidden">
         <ParticlesBg type="cobweb" bg={true} />
-        <div className="absolute inset-0 bg-gradient-to-r from-blue-600/90 to-purple-600/90" />
+        <div className="absolute inset-0 bg-gradient-to-r from-red-600/90 to-red-800/90" />
         <div className="relative z-10 container mx-auto px-4 h-full flex items-center">
           <div className="w-full max-w-6xl mx-auto flex flex-col lg:flex-row items-center justify-between">
             <motion.div 
@@ -97,7 +97,7 @@ const Home = () => {
                       />
                       <div className="p-4">
                         <h3 className="text-lg font-semibold text-gray-800">{product.name}</h3>
-                        <p className="text-primary font-bold mt-2">{product.price}</p>
+                        <p className="text-red-600 font-bold mt-2">{product.price}</p>
                       </div>
                     </div>
                   </SwiperSlide>
@@ -132,7 +132,7 @@ const Home = () => {
       </section>
 
       {/* Deal of the Day */}
-      <section className="py-16 bg-gradient-to-r from-yellow-50 to-red-50">
+      <section className="py-16 bg-gradient-to-r from-red-50 to-red-100">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <motion.div
@@ -141,7 +141,7 @@ const Home = () => {
               transition={{ duration: 0.5 }}
             >
               <h2 className="text-4xl font-bold text-gray-800 mb-4">Deal of the Day</h2>
-              <div className="text-2xl font-mono text-primary">{formatTime(timeLeft)}</div>
+              <div className="text-2xl font-mono text-red-600">{formatTime(timeLeft)}</div>
             </motion.div>
           </div>
 
@@ -151,7 +151,7 @@ const Home = () => {
               <motion.div
                 key={category.id}
                 className={`p-6 rounded-xl cursor-pointer relative overflow-hidden
-                  ${activeCategory === category.id ? 'bg-primary text-white' : 'bg-white'}`}
+                  ${activeCategory === category.id ? 'bg-gradient-to-r from-red-500 to-red-700 text-white' : 'bg-white'}`}
                 whileHover={{ 
                   scale: 1.05,
                   boxShadow: '0 20px 25px -5px rgba(0, 0, 0, 0.1)'
@@ -170,13 +170,13 @@ const Home = () => {
             <div className="flex items-center space-x-4 mb-4 sm:mb-0">
               <button 
                 onClick={() => setViewMode('grid')}
-                className={`p-2 rounded ${viewMode === 'grid' ? 'bg-primary text-white' : 'bg-gray-100'}`}
+                className={`p-2 rounded ${viewMode === 'grid' ? 'bg-gradient-to-r from-red-500 to-red-700 text-white' : 'bg-gray-100'}`}
               >
                 <FaThLarge />
               </button>
               <button 
                 onClick={() => setViewMode('list')}
-                className={`p-2 rounded ${viewMode === 'list' ? 'bg-primary text-white' : 'bg-gray-100'}`}
+                className={`p-2 rounded ${viewMode === 'list' ? 'bg-gradient-to-r from-red-500 to-red-700 text-white' : 'bg-gray-100'}`}
               >
                 <FaThList />
               </button>
@@ -192,7 +192,7 @@ const Home = () => {
             </div>
             <button 
               onClick={() => setShowFilters(!showFilters)}
-              className="p-2 rounded bg-primary text-white flex items-center space-x-2"
+              className="p-2 rounded bg-gradient-to-r from-red-500 to-red-700 text-white flex items-center space-x-2"
             >
               <FaFilter />
               <span>Filters</span>
@@ -216,14 +216,14 @@ const Home = () => {
       </section>
 
       {/* Special Features */}
-      <section className="py-16 bg-gray-50">
+      <section className="py-16 bg-gradient-to-b from-gray-50 to-gray-100">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <motion.div
               whileHover={{ y: -10 }}
               className="p-6 text-center bg-white rounded-lg shadow-lg"
             >
-              <FaShippingFast className="text-4xl text-primary mb-4" />
+              <FaShippingFast className="text-4xl text-red-600 mb-4" />
               <h3 className="text-xl font-semibold mb-2">Fast Delivery</h3>
               <p className="text-gray-600">Free shipping on orders above ₹999</p>
             </motion.div>
@@ -231,7 +231,7 @@ const Home = () => {
               whileHover={{ y: -10 }}
               className="p-6 text-center bg-white rounded-lg shadow-lg"
             >
-              <FaHeadset className="text-4xl text-primary mb-4" />
+              <FaHeadset className="text-4xl text-red-600 mb-4" />
               <h3 className="text-xl font-semibold mb-2">24/7 Support</h3>
               <p className="text-gray-600">Round the clock assistance</p>
             </motion.div>
@@ -239,7 +239,7 @@ const Home = () => {
               whileHover={{ y: -10 }}
               className="p-6 text-center bg-white rounded-lg shadow-lg"
             >
-              <FaShieldAlt className="text-4xl text-primary mb-4" />
+              <FaShieldAlt className="text-4xl text-red-600 mb-4" />
               <h3 className="text-xl font-semibold mb-2">Secure Payment</h3>
               <p className="text-gray-600">Multiple payment options</p>
             </motion.div>
@@ -248,7 +248,7 @@ const Home = () => {
       </section>
 
       {/* Newsletter Section */}
-      <section className="py-16 bg-primary text-white">
+      <section className="py-16 bg-gradient-to-r from-red-500 to-red-700 text-white">
         <div className="container mx-auto px-4 text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -266,7 +266,7 @@ const Home = () => {
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="px-6 py-2 bg-white text-primary rounded-lg font-semibold hover:bg-gray-100"
+                className="px-6 py-2 bg-white text-red-600 rounded-lg font-semibold hover:bg-gray-100"
               >
                 Subscribe
               </motion.button>

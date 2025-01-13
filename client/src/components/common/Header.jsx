@@ -22,14 +22,12 @@ const Header = () => {
   };
 
   return (
-    <header className={` w-full z-50 transition-all duration-300 ${
-      scrolled ? 'bg-blue-600/90 backdrop-blur-sm shadow-lg' : 'bg-gradient-to-r from-blue-600 to-purple-600'
-    }`}>
+    <header className={` w-full z-50 transition-all duration-300 bg-white text-red-600 backdrop-blur `}>
       <nav className="container mx-auto px-4 py-3">
         <div className="flex items-center justify-between">
           {/* Logo */}
           <motion.h1 
-            className="text-2xl font-bold text-white"
+            className="text-2xl font-bold text-red-600"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1 }}
@@ -45,7 +43,7 @@ const Header = () => {
           {/* Mobile Menu Button */}
           <motion.button
             whileTap={{ scale: 0.95 }}
-            className="lg:hidden text-white text-2xl"
+            className="lg:hidden text-red-600 text-2xl"
             onClick={() => setIsOpen(!isOpen)}
           >
             {isOpen ? <FaTimes /> : <FaBars />}
@@ -80,7 +78,7 @@ const NavLinks = ({ handleClick }) => (
       whileHover={{ scale: 1.05 }}
       onClick={handleClick}
     >
-      <FaHome className="text-xl text-white group-hover:text-yellow-400" />
+      <FaHome className="text-xl text-red-600 group-hover:text-orange-400" />
       <span className="nav-tooltip">Home</span>
     </motion.a>
 
@@ -96,7 +94,7 @@ const NavLinks = ({ handleClick }) => (
 );
 
 const MobileNavLinks = ({ handleClick }) => (
-  <div className="flex flex-col space-y-4 text-white">
+  <div className="flex flex-col space-y-4 text-red-600">
     <MobileNavItem href="/" icon={<FaHome />} text="Home" onClick={handleClick} />
     <MobileNavItem href="/about" text="About" onClick={handleClick} />
     <MobileNavItem href="/contact" icon={<FaPhone />} text="Contact" onClick={handleClick} />
@@ -114,8 +112,8 @@ const NavItem = ({ href, icon, text, className = '' }) => (
     whileHover={{ scale: 1.05 }}
     whileTap={{ scale: 0.95 }}
   >
-    {icon && <span className="text-xl text-white group-hover:text-yellow-400">{icon}</span>}
-    {text && <span className="text-white group-hover:text-yellow-400">{text}</span>}
+    {icon && <span className="text-xl text-red-600 group-hover:text-orange-400">{icon}</span>}
+    {text && <span className="text-red-600 group-hover:text-orange-400">{text}</span>}
   </motion.a>
 );
 
