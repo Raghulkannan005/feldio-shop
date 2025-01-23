@@ -21,7 +21,7 @@ const Track = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white flex items-center justify-center">
+    <div className="min-h-[80vh] bg-gradient-to-b from-gray-50 to-white flex items-center justify-center">
       <motion.div 
         className="bg-white p-8 rounded-lg shadow-lg max-w-lg w-full"
         initial={{ opacity: 0, y: -50 }}
@@ -35,7 +35,7 @@ const Track = () => {
             <input 
               type="text" 
               id="orderNumber" 
-              className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" 
+              className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500" 
               placeholder="Enter your order number" 
               value={orderNumber}
               onChange={(e) => setOrderNumber(e.target.value)}
@@ -44,7 +44,7 @@ const Track = () => {
           </div>
           <motion.button 
             type="submit" 
-            className="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600 transition duration-300"
+            className="w-full bg-red-500 text-white py-2 rounded-lg hover:bg-red-600 transition duration-300"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
@@ -64,7 +64,7 @@ const Track = () => {
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.5, delay: index * 0.2 }}
                 >
-                  <step.icon className="text-2xl text-blue-500" />
+                  <step.icon className="text-2xl text-red-500" />
                   <div>
                     <div className="font-semibold">{step.label}</div>
                     <div className="text-sm text-gray-600">{step.date}</div>

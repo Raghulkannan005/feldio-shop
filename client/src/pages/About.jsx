@@ -1,108 +1,105 @@
 import { motion } from 'framer-motion';
-import { FaUsers, FaStore, FaTruck, FaHeadset } from 'react-icons/fa';
+import { FaShippingFast, FaBoxOpen, FaUndo, FaMapPin, FaExclamationTriangle, FaEnvelope, FaPhone, FaMapMarkerAlt } from 'react-icons/fa';
 
 const About = () => {
-    const features = [
-        {
-            icon: <FaUsers className="text-4xl text-blue-500" />,
-            title: "Customer First",
-            description: "We prioritize customer satisfaction and experience above all else."
-        },
-        {
-            icon: <FaStore className="text-4xl text-green-500" />,
-            title: "Trending Products",
-            description: "Curated selection of the latest and most trending products worldwide."
-        },
-        {
-            icon: <FaTruck className="text-4xl text-purple-500" />,
-            title: "Fast Delivery",
-            description: "Quick and reliable shipping to your doorstep nationwide."
-        },
-        {
-            icon: <FaHeadset className="text-4xl text-red-500" />,
-            title: "24/7 Support",
-            description: "Round-the-clock customer service to assist you anytime."
-        }
+    const shippingPolicies = [
+        { icon: <FaShippingFast/>, title: "Fast Processing", content: "Orders ship within 2-5 business days including weekends & holidays" },
+        { icon: <FaBoxOpen/>, title: "Free Shipping", content: "We offer complimentary standard shipping on all orders" },
+        { icon: <FaUndo/>, title: "Easy Returns", content: "3-day return window for unused items in original packaging" },
+        { icon: <FaMapPin/>, title: "Address Verification", content: "Please verify shipping details to avoid delivery delays" },
+        { icon: <FaExclamationTriangle/>, title: "Damage Protection", content: "Full coverage for items damaged during transit" }
+    ];
+
+    const contactInfo = [
+        { icon: <FaEnvelope/>, info: "Feldioshop@gmail.com" },
+        { icon: <FaPhone/>, info: "+91 6385673493" },
+        { icon: <FaPhone/>, info: "+91 63696 32751" },
+        { icon: <FaMapMarkerAlt/>, info: "Car street, Madhuranthakam, chengalpattu, chennai, 603306" }
     ];
 
     return (
-        <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white">
-            {/* Hero Section */}
+        <div className="min-h-screen bg-gradient-to-b from-red-50 to-white">
             <motion.section 
-                className="py-20 text-center"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.8 }}
+                className="py-24 text-center bg-red-600 text-white"
+                initial={{ opacity: 0, y: -50 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 1 }}
             >
-                <h1 className="text-5xl font-bold text-blue-900 mb-6">About Feldio Shop</h1>
-                <p className="text-xl text-gray-600 max-w-2xl mx-auto px-4">
-                    Your go-to destination for the most trending and innovative products. 
-                    We bring you what's hot and what's next in the world of consumer goods.
+                <motion.h1 
+                    className="text-6xl font-bold mb-8"
+                    animate={{ scale: [1, 1.05, 1] }}
+                    transition={{ duration: 2, repeat: Infinity }}
+                >
+                    Welcome to Feldio
+                </motion.h1>
+                <p className="text-xl max-w-3xl mx-auto px-6">
+                    Your premier destination for trending products and innovative solutions. 
+                    We curate the latest in technology, fashion, and lifestyle to bring you 
+                    tomorrow's must-haves, today.
                 </p>
             </motion.section>
 
-            {/* Features Grid */}
-            <section className="py-16 px-4">
-                <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                    {features.map((feature, index) => (
-                        <motion.div
-                            key={index}
-                            className="bg-white p-6 rounded-lg shadow-lg text-center hover:shadow-xl transition-shadow"
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ delay: index * 0.2 }}
-                        >
-                            <div className="mb-4">{feature.icon}</div>
-                            <h3 className="text-xl font-semibold mb-2">{feature.title}</h3>
-                            <p className="text-gray-600">{feature.description}</p>
-                        </motion.div>
-                    ))}
+            <section className="py-16 px-6 bg-white">
+                <div className="max-w-7xl mx-auto">
+                    <h2 className="text-4xl font-bold text-center mb-12 text-red-600">Shipping & Policies</h2>
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        {shippingPolicies.map((policy, index) => (
+                            <motion.div
+                                key={index}
+                                className="bg-red-50 p-8 rounded-xl shadow-lg hover:shadow-2xl transition-shadow"
+                                whileHover={{ y: -10 }}
+                                initial={{ opacity: 0, x: -50 }}
+                                animate={{ opacity: 1, x: 0 }}
+                                transition={{ delay: index * 0.1 }}
+                            >
+                                <div className="text-3xl text-red-600 mb-4">{policy.icon}</div>
+                                <h3 className="text-xl font-bold mb-3 text-red-600">{policy.title}</h3>
+                                <p className="text-gray-700">{policy.content}</p>
+                            </motion.div>
+                        ))}
+                    </div>
                 </div>
             </section>
 
-            {/* Story Section */}
             <motion.section 
-                className="py-16 px-4 bg-blue-900 text-white"
+                className="py-16 px-6 bg-gradient-to-r from-red-600 to-red-700 text-white"
                 initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.8 }}
+                whileInView={{ opacity: 1 }}
+                transition={{ duration: 1 }}
             >
                 <div className="max-w-4xl mx-auto text-center">
-                    <h2 className="text-3xl font-bold mb-6">Our Story</h2>
-                    <p className="text-lg leading-relaxed">
-                        Founded in 2024, Feldio Shop has evolved from a small online store to a 
-                        leading marketplace for trending products. We constantly scout the global 
-                        market to bring you the most innovative, useful, and exciting products 
-                        before they become mainstream. Our mission is to make the latest trends 
-                        accessible to everyone while ensuring premium quality and excellent service.
-                    </p>
+                    <h2 className="text-4xl font-bold mb-8">Why Choose Feldio?</h2>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <motion.div whileHover={{ scale: 1.05 }} className="p-6 bg-red-800/50 rounded-lg">
+                            <h3 className="text-xl font-bold mb-3">Quality First</h3>
+                            <p>Authentic products sourced from trusted global suppliers</p>
+                        </motion.div>
+                        <motion.div whileHover={{ scale: 1.05 }} className="p-6 bg-red-800/50 rounded-lg">
+                            <h3 className="text-xl font-bold mb-3">Trending Selection</h3>
+                            <p>Curated collection of latest market innovations</p>
+                        </motion.div>
+                    </div>
                 </div>
             </motion.section>
 
-            {/* Stats Section */}
-            <section className="py-16 px-4">
-                <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
-                    <motion.div
-                        className="p-6"
-                        whileHover={{ scale: 1.05 }}
-                    >
-                        <h3 className="text-4xl font-bold text-blue-500">1K+</h3>
-                        <p className="text-gray-600 mt-2">Happy Customers</p>
-                    </motion.div>
-                    <motion.div
-                        className="p-6"
-                        whileHover={{ scale: 1.05 }}
-                    >
-                        <h3 className="text-4xl font-bold text-green-500">100+</h3>
-                        <p className="text-gray-600 mt-2">Trending Products</p>
-                    </motion.div>
-                    <motion.div
-                        className="p-6"
-                        whileHover={{ scale: 1.05 }}
-                    >
-                        <h3 className="text-4xl font-bold text-purple-500">10+</h3>
-                        <p className="text-gray-600 mt-2">Categories</p>
-                    </motion.div>
+            <section className="py-16 px-6">
+                <div className="max-w-4xl mx-auto">
+                    <h2 className="text-4xl font-bold text-center mb-12 text-red-600">Get in Touch</h2>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        {contactInfo.map((contact, index) => (
+                            <motion.div
+                                key={index}
+                                className="flex items-center space-x-4 p-6 bg-white rounded-lg shadow-lg"
+                                whileHover={{ scale: 1.02 }}
+                                initial={{ opacity: 0, y: 20 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ delay: index * 0.1 }}
+                            >
+                                <span className="text-2xl text-red-600">{contact.icon}</span>
+                                <span className="text-gray-700 font-medium">{contact.info}</span>
+                            </motion.div>
+                        ))}
+                    </div>
                 </div>
             </section>
         </div>

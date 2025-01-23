@@ -1,0 +1,94 @@
+# TODO List for eCommerce Dropshipping Project
+
+## Completed Tasks:
+1. **Frontend Setup:**
+    - Initialize React project with Vite.
+    - Set up Tailwind CSS for styling.
+    - Create common components (Header, Footer, Loading, Button, Marquee, ErrorBoundary).
+    - Create product-related components (ProductList, ProductCard, ProductDetail).
+    - Create cart-related components (CartItem, CartSummary).
+    - Create pages (Home, About, Contact, Cart, Checkout, Wishlist, Track, Login, NotFound).
+    - Implement routing with React Router.
+    - Add dummy product data for testing.
+
+2. **Backend Setup:**
+    - Initialize Node.js project with Express.
+    - Set up MongoDB with Mongoose for database.
+    - Create models (User, Product, Order).
+    - Create controllers (authController, productController, orderController, paymentController).
+    - Create routes (authRoutes, productRoutes, orderRoutes, paymentRoutes).
+    - Implement JWT-based authentication.
+    - Implement basic CRUD operations for products.
+    - Implement order placement and tracking.
+    - Integrate Razorpay for payment processing.
+
+3. **Styling and Animations:**
+    - Add animations using Framer Motion.
+    - Style components with Tailwind CSS.
+    - Ensure responsive design for all components.
+
+## Pending Tasks:
+1. **Admin Panel:**
+    - Create an Admin page for managing products, orders, and users.
+    - Implement CRUD operations for products in the admin panel.
+    - Implement order management (view, update status) in the admin panel.
+    - Implement user management (view, promote to admin) in the admin panel.
+    - Add authentication and authorization for admin routes.
+
+2. **Razorpay Integration:**
+    - Complete Razorpay payment integration on the frontend.
+    - Implement payment verification on the backend.
+    - Handle payment success and failure scenarios.
+
+3. **User Authentication:**
+    - Implement user registration and login functionality.
+    - Add social login options (Google, Facebook) if required.
+    - Implement password reset functionality.
+
+4. **Product Management:**
+    - Fetch products from the backend instead of using dummy data.
+    - Implement product search and filtering.
+    - Add product reviews and ratings.
+
+5. **Cart and Checkout:**
+    - Implement add to cart functionality.
+    - Implement cart management (update quantity, remove items).
+    - Implement checkout process with Razorpay payment.
+
+6. **Order Management:**
+    - Implement order history and tracking for users.
+    - Send email notifications for order updates.
+
+7. **Deployment:**
+    - Deploy frontend to a hosting service (e.g., Vercel, Netlify).
+    - Deploy backend to a hosting service (e.g., Heroku, DigitalOcean).
+    - Set up environment variables for production.
+
+8. **Testing:**
+    - Write unit tests for critical components and functions.
+    - Perform end-to-end testing for major user flows.
+    - Fix any bugs and optimize performance.
+
+9. **Documentation:**
+    - Update README with project setup and usage instructions.
+    - Add comments and documentation for code.
+    - Create user and admin guides.
+
+## Optional Enhancements:
+1. **Marketing Integration:**
+    - Add Meta Pixel for tracking user events.
+    - Integrate Google Tag Manager for analytics.
+
+2. **SEO Optimization:**
+    - Implement SEO best practices.
+    - Add meta tags and structured data.
+
+3. **Performance Optimization:**
+    - Optimize images and assets.
+    - Implement lazy loading for images and components.
+    - Use caching for API responses.
+
+4. **Additional Features:**
+    - Implement wishlist functionality.
+    - Add discount codes and promotions.
+    - Implement live chat support.

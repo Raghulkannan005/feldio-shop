@@ -12,6 +12,10 @@ import Mainlayout from './components/layout/Mainlayout';
 import Login from './pages/Login';
 import Track from './pages/Track';
 import Wishlist from './pages/Wishlist';
+import Admin from './Admin/Admin';
+import AdminProducts from './Admin/AdminProducts'
+import AdminPayments from './Admin/AdminPayments'
+import AdminShipments from './Admin/AdminShipments'
 
 function App() {
   return (
@@ -29,6 +33,11 @@ function App() {
               <Route path="/login" element={<Login />} />
               <Route path="/track" element={<Track />} />
               <Route path="/wishlist" element={<Wishlist />} />
+              <Route path="/admin" element={<Admin />} />
+              <Route path="/admin/products" element={<AdminProducts />} />
+              <Route path="/admin/payments" element={<AdminPayments />} />
+              <Route path="/admin/shipments" element={<AdminShipments />} />
+              <Route path="/admin/*" element={<Admin />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </Mainlayout>
