@@ -13,7 +13,10 @@ dotenv.config();
 const app = express();
 
 app.use(express.json());
-app.use(cors());
+app.use(cors({
+  origin: 'http://localhost:5173',
+  credentials: true
+}));
 
 // if (!process.env.RAZORPAY_KEY_ID || !process.env.RAZORPAY_SECRET) {
 //   console.error('Razorpay key_id and key_secret are mandatory');
@@ -23,34 +26,17 @@ app.use(cors());
 mongoose.connect(process.env.MONGO_URI)
   .then(() => {
     console.log('Connected to MongoDB');
-    addInitialProduct(); // Add initial product
   })
   .catch((err) => {
     console.error('Error connecting to MongoDB', err);
   });
-
-const addInitialProduct = async () => {
-  const productCount = await Product.countDocuments();
-  if (productCount === 0) {
-    const initialProduct = new Product({
-      name: 'Sample Product',
-      description: 'This is a sample product',
-      price: 100,
-      stock: 10,
-      category: 'Sample Category',
-      images: ['https://via.placeholder.com/150'],
-    });
-    await initialProduct.save();
-    console.log('Initial product added');
-  }
-};
 
 app.use('/api/auth', authRoutes);
 app.use('/api/products', productRoutes);
 app.use('/api/orders', orderRoutes);
 // app.use('/api/payments', paymentRoutes);
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });

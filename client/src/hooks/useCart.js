@@ -1,5 +1,5 @@
-const { useState, useContext } = require('react');
-const { CartContext } = require('../context/CartContext');
+import { useContext } from 'react';
+import { CartContext } from '../context/CartContext';
 
 const useCart = () => {
   const { cartItems, setCartItems } = useContext(CartContext);

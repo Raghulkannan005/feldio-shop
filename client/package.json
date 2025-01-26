@@ -10,6 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "dotenv": "^16.4.7",
     "framer-motion": "^11.17.0",
     "howler": "^2.2.4",
     "particles-bg": "^2.5.5",

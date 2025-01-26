@@ -1,13 +1,13 @@
 
 import { motion } from 'framer-motion';
 import { FaTrash } from 'react-icons/fa';
-import { dummyProducts as cartlistItems } from '../constants';
 
 const Cart = () => {
 
-  const handleRemove = (id) => {
-   
-  };
+  const fetchCartItemsFromLocalStorage = () => {
+    
+  }
+  const cartlistItems = fetchCartItemsFromLocalStorage();
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white flex items-center justify-center">

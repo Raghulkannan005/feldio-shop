@@ -1,10 +1,13 @@
-import { dummyProducts } from "../constants";
+
 import { useParams } from "react-router-dom";
 
 const ProductDetail = () => {
   const { id } = useParams();
-  const product = dummyProducts.find(p => p._id === parseInt(id));
-
+  const product = fetch("http://localhost:3000/api/products/" + id)
+    .then(
+      (response) => {
+        return response.json()
+    })
   if (!product) {
     return (
       <div className="container mx-auto p-4">

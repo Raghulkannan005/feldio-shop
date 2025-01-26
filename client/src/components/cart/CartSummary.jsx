@@ -12,7 +12,7 @@ const CartSummary = ({ items, totalPrice }) => {
       </ul>
       <div className="mt-4 flex justify-between font-bold">
         <span>Total:</span>
-        <span>${totalPrice.toFixed(2)}</span>
+        <span>₹{totalPrice.toFixed(2)}</span>
       </div>
       <button className="mt-4 w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600">
         Checkout

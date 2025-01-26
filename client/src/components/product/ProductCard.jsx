@@ -3,6 +3,10 @@ import { motion } from 'framer-motion';
 const ProductCard = ({ product }) => {
   if (!product) return null;
 
+  const buyNow = (product) => {
+    
+  }
+
   return (
     <motion.div 
       className="bg-white rounded-lg shadow-lg overflow-hidden"
@@ -16,7 +20,16 @@ const ProductCard = ({ product }) => {
       />
       <div className="p-4">
         <h3 className="text-lg font-semibold text-gray-800">{product.name}</h3>
-        <p className="text-red-600 font-bold mt-2">{product.price}</p>
+        <p className="text-red-600 font-bold mt-2">₹{product.price}</p>
+      </div>
+      <div className="p-4 flex justify-between">
+        <button className="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700"
+        onClick={()=>{buyNow(product)}}>
+          Buy Now
+        </button>
+        <button className="bg-gray-800 text-white px-4 py-2 rounded hover:bg-gray-900">
+          Add to Cart
+        </button>
       </div>
     </motion.div>
   );

@@ -1,4 +1,4 @@
-const User = require('../models/userModel');
+const user = require('../models/userModel');
 
 const admin = async (req, res, next) => {
   if (req.user && req.user.isAdmin) {

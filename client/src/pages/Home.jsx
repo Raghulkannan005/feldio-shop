@@ -1,6 +1,5 @@
 import { motion } from 'framer-motion';
 import { useState, useEffect } from 'react';
-import { dummyProducts } from '../constants';
 import ProductCard from '../components/product/ProductCard';
 import { FaSearch, FaThList, FaThLarge, FaFilter, FaShippingFast, FaHeadset, FaShieldAlt } from 'react-icons/fa';
 import ParticlesBg from 'particles-bg';
@@ -14,7 +13,7 @@ const Home = () => {
   const [viewMode, setViewMode] = useState('grid');
   const [sortBy, setSortBy] = useState('newest');
   const [showFilters, setShowFilters] = useState(false);
-  const [timeLeft, setTimeLeft] = useState(86400); // 24 hours in seconds
+  const [timeLeft, setTimeLeft] = useState(36400); // 24 hours in seconds
 
   // Categories with icons and stats
   const categories = [
@@ -27,7 +26,7 @@ const Home = () => {
   // Countdown timer effect
   useEffect(() => {
     const timer = setInterval(() => {
-      setTimeLeft(prev => prev > 0 ? prev - 1 : 8400);
+      setTimeLeft(prev => prev > 0 ? prev - 1 : 3400);
     }, 1000);
     return () => clearInterval(timer);
   }, []);
@@ -39,6 +38,26 @@ const Home = () => {
     const secs = seconds % 60;
     return `${hours}h ${minutes}m ${secs}s`;
   };
+
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+      const fetchProducts = async () => {
+          try {
+              const response = await fetch(`http://localhost:3000/api/products`);
+              const contentType = response.headers.get('content-type');
+              if (contentType && contentType.includes('application/json')) {
+                  const data = await response.json();
+                  setProducts(data);
+              } else {
+                  console.error('Response is not JSON:', await response.text());
+              }
+          } catch (error) {
+              console.error('Error fetching products:', error);
+          }
+      };
+      fetchProducts();
+  }, []);
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-red-50 to-white">
@@ -87,7 +106,7 @@ const Home = () => {
                 grabCursor={true}
                 className="w-full max-w-md"
               >
-                {dummyProducts.slice(0, 5).map(product => (
+                {products.map(product => (
                   <SwiperSlide key={product._id}>
                     <div className="bg-white rounded-lg shadow-xl overflow-hidden">
                       <img 
@@ -201,7 +220,7 @@ const Home = () => {
 
           {/* Product Grid/List */}
           <div className={`grid ${viewMode === 'grid' ? 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4' : 'grid-cols-1'} gap-6`}>
-            {dummyProducts.map(product => (
+            {products.map((product) => (
               <motion.div
                 key={product._id}
                 initial={{ opacity: 0, y: 20 }}

@@ -1,7 +1,6 @@
 
 import { motion } from 'framer-motion';
 import { FaTrash } from 'react-icons/fa';
-import { dummyProducts as wishlistItems } from '../constants';
 
 const Wishlist = () => {
 

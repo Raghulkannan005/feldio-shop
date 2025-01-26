@@ -23,7 +23,7 @@ exports.getProduct = async (req, res) => {
 };
 
 exports.addProduct = async (req, res) => {
-  const { name, description, price, stock, category, images } = req.body;
+  const { name, description, price, stock, category, image } = req.body;
 
   try {
     const product = new Product({
@@ -32,7 +32,7 @@ exports.addProduct = async (req, res) => {
       price,
       stock,
       category,
-      images,
+      image,
     });
 
     await product.save();
@@ -43,7 +43,7 @@ exports.addProduct = async (req, res) => {
 };
 
 exports.updateProduct = async (req, res) => {
-  const { name, description, price, stock, category, images } = req.body;
+  const { name, description, price, stock, category, image } = req.body;
 
   try {
     const product = await Product.findById(req.params.id);
@@ -56,7 +56,7 @@ exports.updateProduct = async (req, res) => {
     product.price = price || product.price;
     product.stock = stock || product.stock;
     product.category = category || product.category;
-    product.images = images || product.images;
+    product.image = image || product.image;
 
     await product.save();
     res.status(200).json(product);
