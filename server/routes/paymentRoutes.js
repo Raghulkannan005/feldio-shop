@@ -1,16 +1,19 @@
-const express = require('express');
-const {
-  createOrder,
-  verifyPayment,
-} = require('../controllers/paymentController');
-const protect = require('../middleware/authMiddleware');
+import express from 'express';
+import { createOrder, verifyPayment, getRazorpayKey } from '../controllers/paymentController.js';
+import protect from '../middleware/authMiddleware.js';
 
 const router = express.Router();
 
-router.route('/create-order')
-  .post(protect, createOrder);
+// Routes requiring authentication
+router.use(protect);
 
-router.route('/verify')
-  .post(protect, verifyPayment);
+// Create a new Razorpay order
+router.post('/create-order', createOrder);
 
-module.exports = router;
+// Verify Razorpay payment
+router.post('/verify', verifyPayment);
+
+// Get Razorpay key
+router.get('/get-razorpay-key', getRazorpayKey);
+
+export default router;

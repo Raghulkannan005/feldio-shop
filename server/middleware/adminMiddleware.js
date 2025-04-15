@@ -1,5 +1,3 @@
-const user = require('../models/userModel');
-
 const admin = async (req, res, next) => {
   if (req.user && req.user.isAdmin) {
     next();
@@ -8,4 +6,4 @@ const admin = async (req, res, next) => {
   }
 };
 
-module.exports = admin;
+export default admin;

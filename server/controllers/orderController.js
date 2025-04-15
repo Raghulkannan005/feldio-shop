@@ -1,6 +1,6 @@
-const Order = require('../models/orderModel');
+import Order from '../models/orderModel.js';
 
-exports.placeOrder = async (req, res) => {
+export const placeOrder = async (req, res) => {
   const { products, totalPrice } = req.body;
 
   if (!products || !Array.isArray(products) || products.length === 0) {
@@ -27,7 +27,7 @@ exports.placeOrder = async (req, res) => {
   }
 };
 
-exports.getOrder = async (req, res) => {
+export const getOrder = async (req, res) => {
   try {
     const order = await Order.findById(req.params.id).populate('products.product');
     if (!order) {
@@ -40,7 +40,7 @@ exports.getOrder = async (req, res) => {
   }
 };
 
-exports.updateOrderStatus = async (req, res) => {
+export const updateOrderStatus = async (req, res) => {
   const { status } = req.body;
 
   try {

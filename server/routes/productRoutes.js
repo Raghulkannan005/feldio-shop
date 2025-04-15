@@ -1,15 +1,15 @@
-const express = require('express');
+import express from 'express';
 
-const {
+import {
   getProducts,
   getProduct,
   addProduct,
   updateProduct,
   deleteProduct,
-} = require('../controllers/productController');
+} from '../controllers/productController.js';
 
-const protect = require('../middleware/authMiddleware');
-const admin = require('../middleware/adminMiddleware');
+import protect from '../middleware/authMiddleware.js';
+import admin from '../middleware/adminMiddleware.js';
 
 const router = express.Router();
 
@@ -22,4 +22,4 @@ router.route('/:id')
   .put(protect, admin, updateProduct)
   .delete(deleteProduct);
 
-module.exports = router;
+export default router;
